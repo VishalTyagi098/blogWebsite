@@ -34,4 +34,16 @@ export const addBlogPost=async(req,res)=>{
   }
 };
 
+
+// {GET} It takes the the blog post data from BlogPost model and it finds it using the id.
+export const getSinglePost=async(req,res)=>{
+  const {id}=req.params;
+  try{
+    const singlepost=await BlogPost.findbyId(id);
+
+    res.status(200).json(singlepost);
+  } catch(error){
+    res.status(404).json({message:error.message});
+  }
+};
 export default router;
