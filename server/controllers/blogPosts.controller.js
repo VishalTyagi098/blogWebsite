@@ -69,7 +69,7 @@ export const updateSingleBlogPost=async(req,res)=>{
   res.json(updatedBlogPost);
 };
 
-// 
+// {DELETE}
 export const removeSingleBlogPost=(req,res)=>{
   const {id}=req.params;
 
@@ -80,6 +80,24 @@ export const removeSingleBlogPost=(req,res)=>{
 
   res.json({message:"Successfully deleted"});
 };
+
+// {PATCH}
+export const likeBlogPost=async (req,res)=>{
+  const {id}=req.params;
+
+  if(!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No post with id: ${id}`);
+  
+  const post=await BlogPost.findById(id);
+
+  const updatedBlogPost=await BlogPost.findByIdAndUpdate(
+    id,
+    {upvote:post.upvote+1},
+    {new:true},
+  );
+
+  res.json(updatedBlogPost);
+}
 
 export default router;
 
