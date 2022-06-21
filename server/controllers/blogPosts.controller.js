@@ -35,7 +35,7 @@ export const addBlogPost=async(req,res)=>{
 };
 
 
-// {GET} It takes the the blog post data from BlogPost model and it finds it using the id.
+// {GET} It takes the single blog post data from BlogPost model and it finds it using the id.
 export const getSinglePost=async(req,res)=>{
   const {id}=req.params;
   try{
@@ -46,4 +46,42 @@ export const getSinglePost=async(req,res)=>{
     res.status(404).json({message:error.message});
   }
 };
+
+
+// {PATCH}
+export const updateSingleBlogPost=async(req,res)=>{
+  const {id}=req.params;
+  const {title,description,creator,fuleUpload,tags}=req.body;
+
+  if(!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`post ${id} not found`);
+  
+  const updatedBlogPost={
+    creator,
+    title,
+    description,
+    tags,
+    fileUpload,
+    _id:id,
+  };
+  
+  await BlogPost.findByIdAndUpdate(id,updatedBlogPost,{new:true});
+  res.json(updatedBlogPost);
+};
+
+// 
+export const removeSingleBlogPost=(req,res)=>{
+  const {id}=req.params;
+
+  if(!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`post ${id} not found`);
+  
+  await BlogPost.findByIdAndRemove(id);
+
+  res.json({message:"Successfully deleted"});
+};
+
 export default router;
+
+
+
