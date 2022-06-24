@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import blogPosts from "./routes/blogPosts.routes"
+import blogPosts from "./routes/blogPosts.routes.js"
 
 dotenv.config();
 

@@ -9,7 +9,7 @@ import {
   updateSingleBlogPost,
   removeSingleBlogPost,
   likeBlogPost,
-} from "../controllers/blogPosts.controller";
+} from "../controllers/blogPosts.controller.js";
 
 router.get("/",getAllBlogPosts);
 router.post("/",addBlogPost);

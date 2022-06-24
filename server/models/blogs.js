@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
 const blogSchema =mongoose.Schema({
-  title: string,
-  description: string,
-  tags: [string],
-  fileUpload: string,
+  title: String,
+  description: String,
+  tags: [String],
+  fileUpload: String,
   upvote:{
     type: Number,
     default: 0
   },
-  creator: string,
+  creator: String,
   createdAt: {
     type: Date,
     default: new Date()

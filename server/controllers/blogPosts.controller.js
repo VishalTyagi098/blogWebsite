@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import BlogPost from "../models/blogs";
+import BlogPost from "../models/blogs.js";
 
 const router = express.Router();
 
@@ -70,7 +70,7 @@ export const updateSingleBlogPost=async(req,res)=>{
 };
 
 // {DELETE}
-export const removeSingleBlogPost=(req,res)=>{
+export const removeSingleBlogPost= async (req,res)=>{
   const {id}=req.params;
 
   if(!mongoose.Types.ObjectId.isValid(id))
